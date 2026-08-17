@@ -1,0 +1,1028 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Văn phòng Thừa phát lại — Lập vi bằng ghi nhận chứng cứ trên mạng</title>
+<meta name="description" content="Lập vi bằng ghi nhận nội dung trên môi trường mạng: bài đăng, tin nhắn, website, sàn thương mại điện tử. Thừa phát lại trực tiếp thực hiện, nhận yêu cầu toàn quốc.">
+<meta name="theme-color" content="#0E1B2E">
+
+<!-- TẠM THỜI: chặn Google đánh chỉ mục khi còn là bản xem thử.
+     PHẢI XOÁ dòng dưới trước khi chạy thật, nếu không trang sẽ không lên
+     kết quả tìm kiếm — mà đó chính là việc trang này sinh ra để làm. -->
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   BẢNG MÀU VÀ CHỮ
+   Sửa màu ở đây là đổi cả trang; không đặt mã màu rời trong từng khối.
+   ============================================================ */
+:root {
+  /* nền và mực */
+  --nen:        #F7F6F2;
+  --nen-2:      #FFFFFF;
+  --nen-chim:   #EFEDE6;
+  --muc:        #14202F;
+  --muc-2:      #4C5663;
+  --ke:         #E0DCD2;
+  --ke-dam:     #CDC7B9;
+
+  /* navy */
+  --navy-900:   #0E1B2E;
+  --navy-800:   #16273F;
+  --navy-700:   #1E3A5F;
+  --tren-navy:  #F2EFE8;
+  --tren-navy-2:#B9C2CE;
+
+  /* vàng đồng cổ */
+  --vang:       #A8823C;
+  --vang-sang:  #C9A15C;
+  --vang-mo:    #DCC9A2;
+  --vang-nen:   #F5EFE2;
+
+  /* chữ */
+  --serif: "Lora", ui-serif, "New York", "Times New Roman", "Noto Serif", Georgia, serif;
+  --sans:  "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --khung:   64rem;   /* khung trang */
+  --cot:     42rem;   /* cột chữ đọc */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --nen:        #0B121C;
+    --nen-2:      #121C2A;
+    --nen-chim:   #0F1825;
+    --muc:        #E9E5DC;
+    --muc-2:      #ADB4BE;
+    --ke:         #29374A;
+    --ke-dam:     #3A4A5E;
+
+    --navy-900:   #060C14;
+    --navy-800:   #0D1725;
+    --navy-700:   #1B2E49;
+    --tren-navy:  #EFECE4;
+    --tren-navy-2:#A9B3C1;
+
+    --vang:       #D9B771;
+    --vang-sang:  #E4C88C;
+    --vang-mo:    #6E5A33;
+    --vang-nen:   #1A1A16;
+  }
+}
+
+:root[data-theme="dark"] {
+  --nen:        #0B121C;
+  --nen-2:      #121C2A;
+  --nen-chim:   #0F1825;
+  --muc:        #E9E5DC;
+  --muc-2:      #ADB4BE;
+  --ke:         #29374A;
+  --ke-dam:     #3A4A5E;
+
+  --navy-900:   #060C14;
+  --navy-800:   #0D1725;
+  --navy-700:   #1B2E49;
+  --tren-navy:  #EFECE4;
+  --tren-navy-2:#A9B3C1;
+
+  --vang:       #D9B771;
+  --vang-sang:  #E4C88C;
+  --vang-mo:    #6E5A33;
+  --vang-nen:   #1A1A16;
+}
+
+/* ============================================================
+   NỀN CHUNG
+   ============================================================ */
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding-bottom: 5.25rem;           /* chừa chỗ cho thanh Zalo dính đáy */
+  background: var(--nen);
+  color: var(--muc);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+@media (min-width: 40rem) { body { padding-bottom: 0; } }
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; text-wrap: balance; }
+p  { margin: 0; }
+ul, ol, dl, dd { margin: 0; padding: 0; }
+li { list-style: none; }
+
+a { color: var(--vang); }
+
+:focus-visible {
+  outline: 2px solid var(--vang-sang);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.khung { max-width: var(--khung); margin: 0 auto; padding: 0 1.25rem; }
+@media (min-width: 48rem) { .khung { padding: 0 2rem; } }
+
+.cot { max-width: var(--cot); }
+
+/* nhãn chữ hoa giãn ký tự — dùng lại ở nhiều khối */
+.nhan {
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--vang);
+}
+
+/* số mục kiểu số hiệu điều khoản */
+.so {
+  font-family: var(--serif);
+  font-size: .8125rem;
+  letter-spacing: .1em;
+  color: var(--vang);
+  display: block;
+  margin-bottom: .5rem;
+}
+
+/* mọi con số đọc theo cột */
+.so-lieu, td, .khai dd { font-variant-numeric: tabular-nums; }
+
+/* ============================================================
+   CHỖ CHƯA ĐIỀN — nhã nhặn, không phá bố cục
+   ============================================================ */
+.trong {
+  font-style: normal;
+  font-size: .92em;
+  letter-spacing: .04em;
+  color: currentColor;
+  opacity: .55;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: .06em;
+  white-space: nowrap;
+}
+
+/* khe ảnh: giữ đúng tỉ lệ nên gắn ảnh thật không xô layout */
+.khe {
+  position: relative;
+  background: var(--nen-chim);
+  border: 1px solid var(--ke);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.khe::before {                      /* viền passe-partout mảnh, giữ cả khi có ảnh */
+  content: "";
+  position: absolute;
+  inset: .55rem;
+  border: 1px solid var(--vang-mo);
+  pointer-events: none;
+  z-index: 1;
+}
+.khe img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.khe-noi { text-align: center; color: var(--muc-2); padding: 1rem; }
+.khe-noi svg { display: block; margin: 0 auto .5rem; color: var(--ke-dam); }
+.khe-noi span {
+  font-size: .6875rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .8;
+}
+
+/* ============================================================
+   THANH ĐẦU
+   ============================================================ */
+.dinh {
+  background: var(--navy-900);
+  color: var(--tren-navy-2);
+  border-bottom: 1px solid rgba(201,161,92,.28);
+}
+.dinh .khung {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3rem;
+  font-size: .75rem;
+  letter-spacing: .06em;
+}
+.dinh b {
+  color: var(--tren-navy);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+.dinh .phu { display: none; }
+@media (min-width: 48rem) { .dinh .phu { display: block; } }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  background: var(--navy-900);
+  color: var(--tren-navy);
+  padding: 3rem 0 3.25rem;
+  position: relative;
+}
+.hero::after {                       /* vạch đôi vàng khép chân hero */
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 3px;
+  background:
+    linear-gradient(var(--vang), var(--vang)) 0 0 / 100% 1px no-repeat,
+    linear-gradient(var(--vang), var(--vang)) 0 3px / 100% 1px no-repeat;
+  opacity: .55;
+}
+@media (min-width: 56rem) {
+  .hero { padding: 4.25rem 0 4.5rem; }
+  .hero .khung { display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
+}
+
+.dau-noi { margin-bottom: 1.5rem; color: var(--vang-sang); }
+
+.hero .vp {
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--vang-sang);
+  margin-bottom: 1rem;
+}
+.hero h1 {
+  font-size: clamp(1.85rem, 6.4vw, 2.9rem);
+  line-height: 1.22;
+  letter-spacing: -.01em;
+  max-width: 18ch;
+}
+.hero .duoi {
+  margin-top: 1.15rem;
+  max-width: 46ch;
+  color: var(--tren-navy-2);
+  font-size: 1.0125rem;
+  line-height: 1.7;
+}
+
+.hang { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.85rem; }
+
+.nut {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: 3rem;
+  padding: .75rem 1.5rem;
+  font-family: var(--sans);
+  font-size: .95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+.nut-chinh { background: var(--vang); color: var(--navy-900); border-color: var(--vang); }
+.nut-chinh:hover { background: var(--vang-sang); border-color: var(--vang-sang); }
+.nut-vien { background: transparent; color: var(--vang-sang); border-color: rgba(201,161,92,.55); }
+.nut-vien:hover { background: rgba(201,161,92,.12); border-color: var(--vang-sang); }
+
+.ghi { margin-top: .9rem; font-size: .8125rem; color: var(--tren-navy-2); }
+
+.hero-anh { display: none; }
+@media (min-width: 56rem) {
+  .hero-anh { display: block; aspect-ratio: 4 / 3; border-color: rgba(201,161,92,.3); background: var(--navy-800); }
+  .hero-anh .khe-noi { color: var(--tren-navy-2); }
+  .hero-anh .khe-noi svg { color: rgba(201,161,92,.5); }
+}
+
+/* ============================================================
+   DẢI TÍN NHIỆM
+   ============================================================ */
+.tin { background: var(--nen-2); border-bottom: 1px solid var(--ke); }
+.tin ul {
+  display: grid;
+  gap: 0;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 40rem) { .tin ul { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 64rem) { .tin ul { grid-template-columns: repeat(4, 1fr); } }
+
+.tin li {
+  display: flex;
+  align-items: flex-start;
+  gap: .7rem;
+  padding: 1rem .25rem;
+  font-size: .875rem;
+  line-height: 1.5;
+  color: var(--muc-2);
+  border-bottom: 1px solid var(--ke);
+}
+.tin li:last-child { border-bottom: 0; }
+@media (min-width: 40rem) {
+  .tin li { padding: 1.15rem 1.25rem 1.15rem 0; border-bottom: 0; border-right: 1px solid var(--ke); }
+  .tin li:nth-child(2n) { border-right: 0; padding-left: 1.25rem; }
+}
+@media (min-width: 64rem) {
+  .tin li { border-right: 1px solid var(--ke); padding-left: 1.25rem; }
+  .tin li:first-child { padding-left: 0; }
+  .tin li:nth-child(2n) { padding-left: 1.25rem; }
+  .tin li:last-child { border-right: 0; }
+}
+.tin svg { flex: none; color: var(--vang); margin-top: .1rem; }
+
+/* ============================================================
+   MỤC CHUNG
+   ============================================================ */
+.muc { padding: 3rem 0; border-bottom: 1px solid var(--ke); }
+@media (min-width: 48rem) { .muc { padding: 3.75rem 0; } }
+
+.muc h2 {
+  font-size: clamp(1.35rem, 3.6vw, 1.7rem);
+  line-height: 1.32;
+}
+.dan {
+  margin-top: .7rem;
+  max-width: 52ch;
+  color: var(--muc-2);
+  font-size: .95rem;
+}
+
+/* ------------------ Khối danh tính ------------------ */
+.khai {
+  margin-top: 1.85rem;
+  background: var(--nen-2);
+  border: 1px solid var(--ke-dam);
+  border-top: 3px solid var(--vang);
+  padding: 1.5rem 1.25rem;
+}
+@media (min-width: 40rem) {
+  .khai { display: grid; grid-template-columns: 11rem 1fr; gap: 2rem; padding: 2rem; }
+}
+.khai-anh { aspect-ratio: 4 / 5; max-width: 11rem; }  /* trên điện thoại không để khe ảnh chiếm hết bề ngang */
+.khai-ten {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  line-height: 1.25;
+  margin: 1.15rem 0 1.25rem;
+}
+@media (min-width: 40rem) { .khai-ten { margin-top: 0; } }
+.khai-ten .nhan { display: block; margin-bottom: .45rem; }
+
+.khai .dong {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .1rem;
+  padding: .65rem 0;
+  border-top: 1px solid var(--ke);
+  font-size: .95rem;
+}
+@media (min-width: 30rem) { .khai .dong { grid-template-columns: 11rem 1fr; gap: 1rem; align-items: baseline; } }
+.khai dt { font-size: .8125rem; color: var(--muc-2); }
+.khai dd { margin: 0; }
+
+.khai-cuoi {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ke-dam);
+  font-size: .9rem;
+  color: var(--muc-2);
+  max-width: 56ch;
+}
+
+/* ------------------ Danh mục việc ------------------ */
+.viec { margin-top: 1.85rem; display: grid; gap: 0; }
+@media (min-width: 48rem) { .viec { grid-template-columns: 1fr 1fr; column-gap: 3rem; } }
+
+.viec li {
+  display: grid;
+  grid-template-columns: 2.25rem 1fr;
+  gap: .75rem;
+  align-items: baseline;
+  padding: .8rem 0;
+  border-bottom: 1px solid var(--ke);
+  font-size: .975rem;
+}
+.viec li::before {
+  content: counter(v, decimal-leading-zero);
+  counter-increment: v;
+  font-family: var(--serif);
+  font-size: .8125rem;
+  color: var(--vang);
+  letter-spacing: .06em;
+}
+.viec { counter-reset: v; }
+
+/* ------------------ Bảng chi phí ------------------ */
+.cuon { margin-top: 1.85rem; }
+table { width: 100%; border-collapse: collapse; font-size: .95rem; background: var(--nen-2); }
+caption {
+  caption-side: bottom;
+  padding-top: .85rem;
+  font-size: .8125rem;
+  color: var(--muc-2);
+  text-align: left;
+}
+th, td { border: 1px solid var(--ke-dam); padding: .8rem .9rem; text-align: left; vertical-align: top; }
+thead th {
+  background: var(--navy-900);
+  color: var(--tren-navy);
+  border-color: var(--navy-900);
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+tbody th { font-weight: 500; }
+
+/* Dưới 40rem: bảng 3 cột không đọc nổi trên điện thoại → xếp thành từng thẻ,
+   nhãn cột lấy từ thuộc tính data-nhan nên không phải lặp chữ trong HTML. */
+@media (max-width: 39.999rem) {
+  .cuon tbody, .cuon tr, .cuon th, .cuon td, .cuon caption { display: block; }
+  .cuon table { display: flex; flex-direction: column; }   /* để caption xuống dưới bảng */
+  .cuon tbody { order: 1; }
+  .cuon caption { order: 2; }
+  .cuon thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .cuon tr { border: 1px solid var(--ke-dam); margin-bottom: -1px; }
+  .cuon th, .cuon td { border: 0; padding: .3rem .9rem; }
+  .cuon tbody th { padding-top: .9rem; font-weight: 600; }
+  .cuon tr td:last-child { padding-bottom: .9rem; }
+  .cuon td { display: flex; justify-content: space-between; gap: 1rem; color: var(--muc-2); }
+  .cuon td::before { content: attr(data-nhan); font-size: .8125rem; }
+  .cuon td > * { color: var(--muc); }
+}
+@media (min-width: 40rem) {
+  td:not(:first-child) { white-space: nowrap; }
+}
+
+/* ------------------ Quy trình ------------------ */
+.buoc { margin-top: 1.85rem; counter-reset: b; max-width: var(--cot); }
+.buoc li {
+  counter-increment: b;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: .9rem;
+  padding-bottom: 1.6rem;
+  position: relative;
+}
+.buoc li::before {
+  content: counter(b);
+  grid-row: 1;
+  width: 2rem; height: 2rem;
+  display: grid; place-items: center;
+  font-family: var(--serif);
+  font-size: .875rem;
+  color: var(--vang);
+  border: 1px solid var(--vang-mo);
+  border-radius: 50%;
+  background: var(--nen);
+  position: relative;
+  z-index: 1;
+}
+.buoc li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 1rem; top: 2.1rem; bottom: .2rem;
+  width: 1px;
+  background: var(--ke-dam);
+}
+.buoc li:last-child { padding-bottom: 0; }
+.buoc h3 { font-family: var(--sans); font-size: 1rem; font-weight: 600; margin-bottom: .2rem; }
+.buoc p { color: var(--muc-2); font-size: .95rem; }
+
+/* ------------------ Nói thẳng ------------------ */
+.thang {
+  margin-top: 1.85rem;
+  background: var(--nen-2);
+  border: 1px solid var(--ke-dam);
+  padding: 1.5rem 1.25rem;
+}
+@media (min-width: 48rem) { .thang { padding: 2rem; } }
+.thang > div { padding: 1rem 0; border-top: 1px solid var(--ke); }
+.thang > div:first-child { padding-top: 0; border-top: 0; }
+.thang dt {
+  display: flex;
+  gap: .6rem;
+  align-items: flex-start;
+  font-weight: 600;
+  font-size: .975rem;
+  margin-bottom: .3rem;
+}
+.thang dt svg { flex: none; color: var(--vang); margin-top: .18rem; }
+.thang dd { color: var(--muc-2); font-size: .95rem; max-width: 62ch; padding-left: 1.6rem; }
+
+/* ------------------ Ảnh văn phòng ------------------ */
+/* Điện thoại: 2 cột + ảnh cuối trải ngang, tránh ba khung rỗng xếp dọc quá dài */
+.anh-vp { margin-top: 1.85rem; display: grid; gap: .75rem; grid-template-columns: 1fr 1fr; }
+.anh-vp .khe { aspect-ratio: 3 / 4; }
+.anh-vp .khe:last-child { grid-column: span 2; aspect-ratio: 16 / 9; }
+@media (min-width: 40rem) {
+  .anh-vp { gap: 1rem; grid-template-columns: repeat(3, 1fr); }
+  .anh-vp .khe, .anh-vp .khe:last-child { grid-column: auto; aspect-ratio: 3 / 2; }
+}
+
+/* ------------------ Kết ------------------ */
+.ket {
+  background: var(--navy-900);
+  color: var(--tren-navy);
+  text-align: center;
+  padding: 3.25rem 0;
+}
+.ket h2 { font-size: clamp(1.4rem, 4.4vw, 1.9rem); line-height: 1.3; max-width: 22ch; margin: 0 auto; }
+.ket p { margin: .85rem auto 0; max-width: 42ch; color: var(--tren-navy-2); font-size: .975rem; }
+.ket .hang { justify-content: center; }
+
+/* ------------------ Chân trang ------------------ */
+footer { background: var(--nen-2); border-top: 1px solid var(--ke); padding: 2.5rem 0 2.75rem; font-size: .9rem; }
+footer .cot-ft { display: grid; gap: 1.75rem; grid-template-columns: 1fr; }
+@media (min-width: 40rem) { footer .cot-ft { grid-template-columns: 1fr 1fr; } }
+footer h3 { font-family: var(--sans); font-size: .6875rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--vang); margin-bottom: .65rem; }
+footer p { color: var(--muc-2); margin-bottom: .25rem; }
+footer a { color: var(--muc); text-decoration-color: var(--vang-mo); text-underline-offset: .2em; }
+.rieng {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--ke);
+  font-size: .8125rem;
+  line-height: 1.65;
+  color: var(--muc-2);
+  max-width: 68ch;
+}
+
+/* ------------------ Thanh Zalo dính đáy ------------------ */
+.day {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 40;
+  background: var(--nen-2);
+  border-top: 1px solid var(--ke-dam);
+  padding: .7rem 1.25rem calc(.7rem + env(safe-area-inset-bottom));
+}
+.day .nut { width: 100%; }
+@media (min-width: 40rem) { .day { display: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+/* ============================================================
+   KHỐI HƯỚNG DẪN TẠM — xoá khi đã điền xong
+   ============================================================ */
+#huong-dan-dien {
+  background: var(--nen);
+  border-top: 1px dashed var(--ke-dam);
+  padding: 2rem 0 2.5rem;
+  font-size: .875rem;
+  color: var(--muc-2);
+}
+#huong-dan-dien h3 { font-family: var(--sans); font-size: .8125rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muc); margin-bottom: .85rem; }
+#huong-dan-dien ul { display: grid; gap: .4rem; max-width: 62ch; }
+#huong-dan-dien li { position: relative; padding-left: 1.1rem; }
+#huong-dan-dien li::before { content: "—"; position: absolute; left: 0; color: var(--vang); }
+#huong-dan-dien code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: .8125rem;
+  background: var(--nen-chim);
+  border: 1px solid var(--ke);
+  padding: 0 .3em;
+}
+#huong-dan-dien p { margin-top: 1rem; max-width: 62ch; }
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     THANH ĐẦU
+     ============================================================ -->
+<div class="dinh">
+  <div class="khung">
+    <span><b>VPTPL <i class="trong">[TÊN VĂN PHÒNG]</i></b></span>
+    <span class="phu">Lập vi bằng ghi nhận chứng cứ trên mạng · Nhận yêu cầu toàn quốc</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<header class="hero">
+  <div class="khung">
+    <div>
+      <!-- Dấu nổi: cán cân công lý trong vòng tròn kép có răng -->
+      <svg class="dau-noi" width="52" height="52" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+        <circle cx="26" cy="26" r="24.5" stroke="currentColor" stroke-width="1" opacity=".45"/>
+        <circle cx="26" cy="26" r="20.5" stroke="currentColor" stroke-width="1"/>
+        <g stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M26 14.5v22"/>
+          <path d="M17 18.5h18"/>
+          <path d="M20.5 36.5h11"/>
+          <path d="M17 18.5 13 27h8l-4-8.5Z"/>
+          <path d="M35 18.5 31 27h8l-4-8.5Z"/>
+        </g>
+      </svg>
+
+      <p class="vp">Văn phòng Thừa phát lại <i class="trong">[TÊN VĂN PHÒNG]</i></p>
+
+      <h1>Chứng cứ trên mạng có thể bị xoá bất cứ lúc nào</h1>
+
+      <p class="duoi">
+        Ảnh chụp màn hình là loại chứng cứ dễ bị phản bác nhất, vì ai cũng chỉnh sửa được.
+        Vi bằng ghi nhận nội dung đang hiển thị tại thời điểm Thừa phát lại chứng kiến,
+        được đăng ký tại Sở Tư pháp, để Toà án có căn cứ xem xét.
+      </p>
+
+      <div class="hang">
+        <a class="nut nut-chinh" href="https://zalo.me/SO_ZALO">
+          <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M17.5 9.6c0 3.7-3.4 6.7-7.5 6.7-.9 0-1.8-.15-2.6-.42L3 17.5l1.3-3.3A6.3 6.3 0 0 1 2.5 9.6c0-3.7 3.4-6.7 7.5-6.7s7.5 3 7.5 6.7Z"
+                  stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          Nhắn Zalo tư vấn
+        </a>
+        <a class="nut nut-vien" href="tel:SO_DIEN_THOAI">Gọi <i class="trong">[SỐ ĐIỆN THOẠI]</i></a>
+      </div>
+
+      <p class="ghi">Nhắn tin mô tả tình huống, phản hồi trong giờ hành chính.</p>
+    </div>
+
+    <!-- Ảnh biển hiệu / mặt tiền văn phòng, tỉ lệ 4:3 -->
+    <div class="khe hero-anh">
+      <div class="khe-noi">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="1" stroke="currentColor" stroke-width="1.4"/>
+          <circle cx="8.5" cy="10" r="1.6" stroke="currentColor" stroke-width="1.4"/>
+          <path d="m4 17 5-4.5 4.5 4 3-2.5L20 17.5" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+        </svg>
+        <span>Ảnh biển hiệu văn phòng</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     DẢI TÍN NHIỆM
+     ============================================================ -->
+<section class="tin" aria-label="Cơ sở pháp lý">
+  <div class="khung">
+    <ul>
+      <li>
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M10 2.5 3.5 5.2v4.6c0 3.6 2.6 6.9 6.5 7.7 3.9-.8 6.5-4.1 6.5-7.7V5.2L10 2.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="m7.3 10 1.9 1.9 3.6-3.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Chức danh do Bộ trưởng Bộ Tư pháp bổ nhiệm
+      </li>
+      <li>
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M5 2.8h7l3.2 3.2v11.2H5V2.8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M11.7 2.8v3.5h3.5M7.6 11h4.8M7.6 13.7h3.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Vi bằng đăng ký tại Sở Tư pháp <i class="trong">[TỈNH]</i>
+      </li>
+      <li>
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="10" cy="10" r="7.2" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M2.8 10h14.4M10 2.8c1.9 2 2.9 4.5 2.9 7.2s-1 5.2-2.9 7.2c-1.9-2-2.9-4.5-2.9-7.2s1-5.2 2.9-7.2Z" stroke="currentColor" stroke-width="1.4"/>
+        </svg>
+        Nội dung nằm trên Internet nên nhận yêu cầu từ mọi tỉnh thành
+      </li>
+      <li>
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="10" cy="6.8" r="3.1" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M4 16.6c.6-2.9 3-4.6 6-4.6s5.4 1.7 6 4.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        Thừa phát lại trực tiếp thực hiện, không uỷ quyền
+      </li>
+    </ul>
+  </div>
+</section>
+
+<main>
+<div class="khung">
+
+  <!-- ============================================================
+       I. NGƯỜI TRỰC TIẾP THỰC HIỆN
+       ============================================================ -->
+  <section class="muc">
+    <span class="so">MỤC I</span>
+    <h2>Người trực tiếp thực hiện</h2>
+    <p class="dan">Thừa phát lại là chức danh do Bộ trưởng Bộ Tư pháp bổ nhiệm, hành nghề theo Nghị định 08/2020/NĐ-CP.</p>
+
+    <div class="khai">
+      <!-- Ảnh chân dung Thừa phát lại, tỉ lệ 4:5 -->
+      <div class="khe khai-anh">
+        <div class="khe-noi">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="8.5" r="3.6" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M4.8 20c.7-3.5 3.6-5.6 7.2-5.6s6.5 2.1 7.2 5.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          <span>Ảnh chân dung</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="khai-ten">
+          <span class="nhan">Thừa phát lại</span>
+          <i class="trong">[HỌ VÀ TÊN]</i>
+        </p>
+
+        <dl>
+          <div class="dong">
+            <dt>Số Thẻ hành nghề</dt>
+            <dd><i class="trong">[SỐ THẺ]</i></dd>
+          </div>
+          <div class="dong">
+            <dt>Ngày bổ nhiệm</dt>
+            <dd><i class="trong">[NGÀY THÁNG NĂM]</i></dd>
+          </div>
+          <div class="dong">
+            <dt>Cơ quan quản lý</dt>
+            <dd>Sở Tư pháp <i class="trong">[TỈNH]</i></dd>
+          </div>
+        </dl>
+
+        <p class="khai-cuoi">
+          Mọi vi bằng đều do Thừa phát lại trực tiếp chứng kiến và lập, không uỷ quyền cho người khác làm thay.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       II. VIỆC NHẬN LÀM
+       ============================================================ -->
+  <section class="muc">
+    <span class="so">MỤC II</span>
+    <h2>Những việc văn phòng nhận làm</h2>
+    <p class="dan">Nội dung cần ghi nhận nằm trên Internet nên không phụ thuộc khoảng cách — Thừa phát lại ngồi tại văn phòng truy cập và chứng kiến.</p>
+
+    <ul class="viec">
+      <li>Bài đăng, bình luận bôi nhọ, vu khống trên mạng xã hội</li>
+      <li>Trang, tài khoản giả mạo thương hiệu</li>
+      <li>Hình ảnh, video, nội dung sản phẩm bị sao chép</li>
+      <li>Đánh giá sai sự thật trên sàn thương mại điện tử</li>
+      <li>Tin nhắn, thư điện tử trao đổi liên quan đến giao dịch</li>
+      <li>Nội dung một trang web tại thời điểm nhất định</li>
+      <li>Buổi phát trực tiếp có nội dung vi phạm</li>
+    </ul>
+  </section>
+
+  <!-- ============================================================
+       III. CHI PHÍ VÀ THỜI GIAN
+       ============================================================ -->
+  <section class="muc">
+    <span class="so">MỤC III</span>
+    <h2>Chi phí và thời gian</h2>
+    <p class="dan">Ba câu khách hỏi nhiều nhất là làm được không, hết bao nhiêu, mất bao lâu. Bảng dưới trả lời hai câu sau.</p>
+
+    <div class="cuon">
+      <table>
+        <caption>Mức tham khảo. Chi phí cuối cùng tuỳ khối lượng nội dung cần ghi nhận.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Loại việc</th>
+            <th scope="col">Chi phí</th>
+            <th scope="col">Thời gian</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Ghi nhận một bài đăng hoặc một trang</th>
+            <td data-nhan="Chi phí"><i class="trong">[GIÁ]</i></td>
+            <td data-nhan="Thời gian"><i class="trong">[SỐ NGÀY]</i></td>
+          </tr>
+          <tr>
+            <th scope="row">Nhiều nội dung trong cùng vụ việc</th>
+            <td data-nhan="Chi phí"><i class="trong">[GIÁ]</i></td>
+            <td data-nhan="Thời gian"><i class="trong">[SỐ NGÀY]</i></td>
+          </tr>
+          <tr>
+            <th scope="row">Tin nhắn, hội thoại</th>
+            <td data-nhan="Chi phí"><i class="trong">[GIÁ]</i></td>
+            <td data-nhan="Thời gian"><i class="trong">[SỐ NGÀY]</i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       IV. QUY TRÌNH
+       ============================================================ -->
+  <section class="muc">
+    <span class="so">MỤC IV</span>
+    <h2>Quy trình bốn bước</h2>
+
+    <ol class="buoc">
+      <li>
+        <div>
+          <h3>Gửi yêu cầu qua Zalo</h3>
+          <p>Mô tả tình huống và gửi đường dẫn tới nội dung cần ghi nhận. Văn phòng xác nhận có thuộc trường hợp được lập vi bằng hay không.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Thống nhất phạm vi và chi phí</h3>
+          <p>Chốt cụ thể những nội dung nào sẽ được ghi nhận, chi phí và thời gian hoàn thành.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Thừa phát lại trực tiếp ghi nhận</h3>
+          <p>Truy cập và chứng kiến nội dung đang hiển thị, lập vi bằng kèm hình ảnh và tài liệu chứng minh.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Đăng ký và bàn giao</h3>
+          <p>Vi bằng được gửi Sở Tư pháp đăng ký theo quy định, sau đó bàn giao bản chính cho khách hàng.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============================================================
+       V. NÓI THẲNG
+       ============================================================ -->
+  <section class="muc">
+    <span class="so">MỤC V</span>
+    <h2>Nói thẳng những điều vi bằng không làm được</h2>
+    <p class="dan">Biết trước giới hạn giúp bạn quyết định có cần lập vi bằng hay không, thay vì kỳ vọng sai.</p>
+
+    <dl class="thang">
+      <div>
+        <dt>
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="7.4" stroke="currentColor" stroke-width="1.5"/>
+            <path d="m5.6 5.6 8.8 8.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Không thay thế văn bản công chứng, chứng thực
+        </dt>
+        <dd>Không dùng vi bằng để xác nhận nội dung các giao dịch mà pháp luật bắt buộc phải công chứng hoặc chứng thực, trong đó có chuyển nhượng nhà đất.</dd>
+      </div>
+      <div>
+        <dt>
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="7.4" stroke="currentColor" stroke-width="1.5"/>
+            <path d="m5.6 5.6 8.8 8.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Không bảo đảm bạn thắng kiện
+        </dt>
+        <dd>Vi bằng ghi nhận một sự việc có thật đã diễn ra, để Toà án có thêm căn cứ xem xét cùng các chứng cứ khác.</dd>
+      </div>
+      <div>
+        <dt>
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="7.4" stroke="currentColor" stroke-width="1.5"/>
+            <path d="m5.6 5.6 8.8 8.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Không xác nhận giao dịch là hợp pháp
+        </dt>
+        <dd>Vi bằng trả lời câu hỏi việc đó có xảy ra hay không, không trả lời việc đó đúng luật hay sai luật.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ============================================================
+       VI. VĂN PHÒNG
+       ============================================================ -->
+  <section class="muc">
+    <span class="so">MỤC VI</span>
+    <h2>Văn phòng</h2>
+    <p class="dan"><i class="trong">[ĐỊA CHỈ ĐẦY ĐỦ]</i> · Sở Tư pháp <i class="trong">[TỈNH]</i> quản lý.</p>
+
+    <div class="anh-vp">
+      <div class="khe">
+        <div class="khe-noi">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3.5 20h17M5 20V9.5l7-4.5 7 4.5V20" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            <path d="M9.5 20v-5h5v5" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+          </svg>
+          <span>Mặt tiền văn phòng</span>
+        </div>
+      </div>
+      <div class="khe">
+        <div class="khe-noi">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="4" y="3.5" width="16" height="17" rx="1" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          <span>Vi bằng và con dấu</span>
+        </div>
+      </div>
+      <div class="khe">
+        <div class="khe-noi">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="4.5" width="18" height="15" rx="1" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M3 9h18M7.5 4.5v-2M16.5 4.5v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          <span>Bàn làm việc, tủ hồ sơ</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<!-- ============================================================
+     KẾT
+     ============================================================ -->
+<section class="ket">
+  <div class="khung">
+    <h2>Nội dung có thể bị gỡ bất cứ lúc nào</h2>
+    <p>Nếu đang cần giữ lại chứng cứ, nhắn tin mô tả để văn phòng xem có làm được không.</p>
+    <div class="hang">
+      <a class="nut nut-chinh" href="https://zalo.me/SO_ZALO">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M17.5 9.6c0 3.7-3.4 6.7-7.5 6.7-.9 0-1.8-.15-2.6-.42L3 17.5l1.3-3.3A6.3 6.3 0 0 1 2.5 9.6c0-3.7 3.4-6.7 7.5-6.7s7.5 3 7.5 6.7Z"
+                stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        Nhắn Zalo tư vấn
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHÂN TRANG
+     ============================================================ -->
+<footer>
+  <div class="khung">
+    <div class="cot-ft">
+      <div>
+        <h3>Văn phòng</h3>
+        <p>Văn phòng Thừa phát lại <i class="trong">[TÊN VĂN PHÒNG]</i></p>
+        <p><i class="trong">[ĐỊA CHỈ ĐẦY ĐỦ]</i></p>
+        <p>Sở Tư pháp <i class="trong">[TỈNH]</i> quản lý</p>
+      </div>
+      <div>
+        <h3>Liên hệ</h3>
+        <p>Zalo <a href="https://zalo.me/SO_ZALO"><i class="trong">[SỐ ZALO]</i></a></p>
+        <p>Điện thoại <a href="tel:SO_DIEN_THOAI"><i class="trong">[SỐ ĐIỆN THOẠI]</i></a></p>
+        <p>Giờ làm việc <i class="trong">[GIỜ LÀM VIỆC]</i></p>
+      </div>
+    </div>
+
+    <p class="rieng">
+      Thông tin bạn cung cấp qua Zalo (họ tên, số điện thoại, mô tả vụ việc) chỉ dùng để tư vấn
+      và thực hiện yêu cầu lập vi bằng, không chia sẻ cho bên thứ ba ngoài các trường hợp pháp
+      luật yêu cầu. Văn phòng bảo mật thông tin về việc thực hiện công việc theo quy định về
+      hoạt động của Thừa phát lại.
+    </p>
+  </div>
+</footer>
+
+<!-- Thanh Zalo dính đáy, chỉ hiện trên điện thoại -->
+<div class="day">
+  <a class="nut nut-chinh" href="https://zalo.me/SO_ZALO">
+    <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M17.5 9.6c0 3.7-3.4 6.7-7.5 6.7-.9 0-1.8-.15-2.6-.42L3 17.5l1.3-3.3A6.3 6.3 0 0 1 2.5 9.6c0-3.7 3.4-6.7 7.5-6.7s7.5 3 7.5 6.7Z"
+            stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
+    Nhắn Zalo tư vấn
+  </a>
+</div>
+
+
+<!-- ======================= XOÁ TỪ ĐÂY ======================= -->
+<section id="huong-dan-dien">
+  <div class="khung">
+    <h3>Chỗ cần điền trước khi đưa trang lên tên miền</h3>
+    <ul>
+      <li>Mọi cụm trong ngoặc vuông: tìm <code>class="trong"</code> rồi thay cả thẻ <code>&lt;i&gt;…&lt;/i&gt;</code> bằng chữ thật.</li>
+      <li>Link Zalo: thay <code>https://zalo.me/SO_ZALO</code> ở 4 chỗ (hero, kết, chân trang, thanh đáy).</li>
+      <li>Số gọi: thay <code>tel:SO_DIEN_THOAI</code> ở 2 chỗ (hero, chân trang).</li>
+      <li>Thẻ <code>&lt;title&gt;</code> và <code>&lt;meta name="description"&gt;</code>: thêm tên văn phòng và tỉnh để Google hiển thị đúng.</li>
+      <li><strong>Xoá thẻ <code>&lt;meta name="robots" content="noindex, nofollow"&gt;</code></strong> trong <code>&lt;head&gt;</code> — đang chặn Google trong lúc còn là bản xem thử. Quên xoá là trang không bao giờ lên kết quả tìm kiếm.</li>
+    </ul>
+
+    <h3 style="margin-top:1.5rem">Ảnh cần chụp</h3>
+    <ul>
+      <li>Chân dung Thừa phát lại — dọc, tỉ lệ 4:5, tối thiểu 800×1000px.</li>
+      <li>Biển hiệu / mặt tiền văn phòng — ngang, tỉ lệ 4:3, tối thiểu 1200×900px.</li>
+      <li>Ba ảnh văn phòng — ngang, tỉ lệ 3:2, tối thiểu 1200×800px.</li>
+    </ul>
+
+    <p>
+      Cách gắn ảnh: trong khối <code>&lt;div class="khe"&gt;</code>, xoá <code>&lt;div class="khe-noi"&gt;…&lt;/div&gt;</code>
+      và thay bằng <code>&lt;img src="anh/ten-file.jpg" alt="mô tả ngắn"&gt;</code>. Khung đã cố định tỉ lệ nên bố cục không xô.
+    </p>
+
+    <p>
+      Xoá khối này khi xong: xoá từ dòng <code>XOÁ TỪ ĐÂY</code> đến <code>ĐẾN ĐÂY</code>,
+      và xoá phần CSS <code>#huong-dan-dien</code> trong thẻ <code>&lt;style&gt;</code>.
+    </p>
+  </div>
+</section>
+<!-- ======================= ĐẾN ĐÂY ========================== -->
+
+</body>
+</html>
