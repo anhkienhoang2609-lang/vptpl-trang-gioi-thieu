@@ -458,13 +458,14 @@ tbody th { font-weight: 500; }
   .cuon th, .cuon td { border: 0; padding: .3rem .9rem; }
   .cuon tbody th { padding-top: .9rem; font-weight: 600; }
   .cuon tr td:last-child { padding-bottom: .9rem; }
-  .cuon td { display: flex; justify-content: space-between; gap: 1rem; color: var(--muc-2); }
-  .cuon td::before { content: attr(data-nhan); font-size: .8125rem; }
-  .cuon td > * { color: var(--muc); }
+  .cuon td::before {
+    content: attr(data-nhan);
+    display: block;
+    font-size: .8125rem;
+    color: var(--muc-2);
+  }
 }
-@media (min-width: 40rem) {
-  td:not(:first-child) { white-space: nowrap; }
-}
+
 
 /* ------------------ Quy trình ------------------ */
 .buoc { margin-top: 1.85rem; counter-reset: b; max-width: var(--cot); }
