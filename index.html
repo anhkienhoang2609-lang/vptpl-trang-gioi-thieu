@@ -6,6 +6,8 @@
 <title>Văn phòng Thừa phát lại Phú Thọ — Lập vi bằng ghi nhận chứng cứ trên mạng</title>
 <meta name="description" content="Văn phòng Thừa phát lại Phú Thọ — lập vi bằng ghi nhận nội dung trên môi trường mạng: bài đăng, tin nhắn, website, sàn thương mại điện tử. Thừa phát lại Ngô Thị Thu Hà trực tiếp thực hiện, nhận yêu cầu toàn quốc.">
 <meta name="theme-color" content="#0E1B2E">
+<link rel="icon" href="anh/logo-vptpl-phu-tho.png">
+<link rel="apple-touch-icon" href="anh/logo-vptpl-phu-tho.png">
 
 <!-- TẠM THỜI: chặn Google đánh chỉ mục khi còn là bản xem thử.
      PHẢI XOÁ dòng dưới trước khi chạy thật, nếu không trang sẽ không lên
@@ -247,7 +249,13 @@ a { color: var(--vang); }
   .hero .khung { display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
 }
 
-.dau-noi { margin-bottom: 1.5rem; color: var(--vang-sang); }
+.dau-noi {
+  display: block;
+  width: 5.5rem;
+  height: auto;
+  margin-bottom: 1.35rem;
+}
+@media (min-width: 56rem) { .dau-noi { width: 6.5rem; } }
 
 .hero .vp {
   font-size: .75rem;
@@ -620,18 +628,8 @@ footer a { color: var(--muc); text-decoration-color: var(--vang-mo); text-underl
 <header class="hero">
   <div class="khung">
     <div>
-      <!-- Dấu nổi: cán cân công lý trong vòng tròn kép có răng -->
-      <svg class="dau-noi" width="52" height="52" viewBox="0 0 52 52" fill="none" aria-hidden="true">
-        <circle cx="26" cy="26" r="24.5" stroke="currentColor" stroke-width="1" opacity=".45"/>
-        <circle cx="26" cy="26" r="20.5" stroke="currentColor" stroke-width="1"/>
-        <g stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M26 14.5v22"/>
-          <path d="M17 18.5h18"/>
-          <path d="M20.5 36.5h11"/>
-          <path d="M17 18.5 13 27h8l-4-8.5Z"/>
-          <path d="M35 18.5 31 27h8l-4-8.5Z"/>
-        </g>
-      </svg>
+      <img class="dau-noi" src="anh/logo-vptpl-phu-tho.png" width="320" height="301"
+           alt="Logo Văn phòng Thừa phát lại Phú Thọ">
 
       <p class="vp">Văn phòng Thừa phát lại Phú Thọ</p>
 
