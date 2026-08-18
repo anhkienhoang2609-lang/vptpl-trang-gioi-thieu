@@ -368,7 +368,7 @@ a { color: var(--vang); }
 }
 .khai-anh { aspect-ratio: 2 / 3; max-width: 11rem; }  /* khớp tỉ lệ ảnh thẻ, không cắt mặt */
 .khai-anh img { object-position: center top; }
-.khai .phu-chu { color: var(--muc-2); font-size: .8125rem; }
+.phu-chu { color: var(--muc-2); font-size: .8125rem; font-weight: 400; }
 .khai-don { display: block; }   /* khối hồ sơ văn phòng: dùng lại kiểu .khai nhưng không có cột ảnh */
 .khai-don .dong:first-child { border-top: 0; padding-top: 0; }   /* không có tên ở trên nên bỏ vạch thừa */
 .khai-ten {
@@ -782,37 +782,42 @@ footer a { color: var(--muc); text-decoration-color: var(--vang-mo); text-underl
   <section class="muc">
     <span class="so">MỤC III</span>
     <h2>Chi phí và thời gian</h2>
-    <p class="dan">Ba câu khách hỏi nhiều nhất là làm được không, hết bao nhiêu, mất bao lâu. Bảng dưới trả lời hai câu sau.</p>
+    <p class="dan">Ba câu khách hỏi nhiều nhất là làm được không, hết bao nhiêu, mất bao lâu. Mục này trả lời hai câu sau.</p>
 
     <div class="cuon">
       <table>
-        <caption>Mức tham khảo. Chi phí cuối cùng tuỳ khối lượng nội dung cần ghi nhận.</caption>
+        <caption>
+          Trích Biểu phí dịch vụ niêm yết tại văn phòng. Chưa bao gồm VAT.
+          Ngoài giờ hành chính, chủ nhật và ngày lễ tính bằng 150%.
+        </caption>
         <thead>
           <tr>
-            <th scope="col">Loại việc</th>
-            <th scope="col">Chi phí</th>
-            <th scope="col">Thời gian</th>
+            <th scope="col">Nội dung</th>
+            <th scope="col">Mức thu</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">Ghi nhận một bài đăng hoặc một trang</th>
-            <td data-nhan="Chi phí"><i class="trong">[GIÁ]</i></td>
-            <td data-nhan="Thời gian"><i class="trong">[SỐ NGÀY]</i></td>
+            <th scope="row">Vi bằng ghi nhận nội dung trên mạng<br><span class="phu-chu">thực hiện tại trụ sở văn phòng, trong không quá một ngày làm việc</span></th>
+            <td data-nhan="Mức thu">500.000 – 5.000.000 đ<span class="phu-chu"> / vi bằng</span></td>
           </tr>
           <tr>
-            <th scope="row">Nhiều nội dung trong cùng vụ việc</th>
-            <td data-nhan="Chi phí"><i class="trong">[GIÁ]</i></td>
-            <td data-nhan="Thời gian"><i class="trong">[SỐ NGÀY]</i></td>
+            <th scope="row">In màu nội dung kèm theo vi bằng</th>
+            <td data-nhan="Mức thu">Miễn phí 15 trang đầu<span class="phu-chu">, từ trang 16: 10.000 đ/trang</span></td>
           </tr>
           <tr>
-            <th scope="row">Tin nhắn, hội thoại</th>
-            <td data-nhan="Chi phí"><i class="trong">[GIÁ]</i></td>
-            <td data-nhan="Thời gian"><i class="trong">[SỐ NGÀY]</i></td>
+            <th scope="row">Bản chính vi bằng</th>
+            <td data-nhan="Mức thu">Cấp miễn phí 02 bản<span class="phu-chu">, từ bản thứ ba: 5.000 đ/trang</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Bản sao vi bằng</th>
+            <td data-nhan="Mức thu">5.000 đ/trang<span class="phu-chu"> với 02 trang đầu, 3.000 đ/trang từ trang thứ ba</span></td>
           </tr>
         </tbody>
       </table>
     </div>
+
+    <p class="dan">Mức thu cụ thể trong khoảng trên tuỳ khối lượng nội dung cần ghi nhận. Việc ghi nhận thực hiện trong không quá một ngày làm việc; vi bằng bàn giao sau khi đăng ký tại Sở Tư pháp, mất khoảng <i class="trong">[SỐ NGÀY]</i>.</p>
   </section>
 
   <!-- ============================================================
